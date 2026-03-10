@@ -4,7 +4,6 @@ pymongo
 numpy
 deepface
 scipy
-ip-finder
 certifi
 python-dotenv
 waitress
