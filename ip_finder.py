@@ -1,6 +1,7 @@
 import socket
 
 def get_local_ip():
+    return ""
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         # Doesn't actually connect, just helps find the correct interface

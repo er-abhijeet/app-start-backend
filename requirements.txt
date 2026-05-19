@@ -1,11 +1,18 @@
-Flask
-flask-cors
-pymongo
-numpy
-deepface
-scipy
-certifi
-python-dotenv
-waitress
-hupper
-Pillow
+# Web Framework & Server
+Flask==3.0.3
+Flask-Cors==4.0.1
+waitress==3.0.0
+
+# Database & Environment
+pymongo==4.7.2
+python-dotenv==1.0.1
+certifi==2024.6.2
+
+# Image Processing & Math
+Pillow==10.3.0
+scipy==1.13.1
+
+# Utilities
+hupper==1.12.1
+
+google-cloud-vision
