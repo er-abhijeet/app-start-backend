@@ -13,9 +13,9 @@ load_dotenv()
 # ==========================================
 # CONFIGURATION
 # ==========================================
-IMAGE_FOLDER = "./test_images/parth"  # <-- Change this to your folder of images
+IMAGE_FOLDER = "./test_images/adii"  # <-- Change this to your folder of images
 OWNER_EMAIL = "testing@example.com"  # <-- Change to the user you are simulating
-BACKEND_URL = "http://localhost:5000"
+BACKEND_URL = "https://gallery.snorlax.codes"
 MONGO_URI = os.getenv("MONGO_URI", "your_mongodb_connection_string_here")
 
 
@@ -26,7 +26,9 @@ LOCATIONS = [
     # {"name": "Sector 29", "lat": 21.1415, "lon": 81.7915},
     # {"name": "North Block", "lat": 21.1610, "lon": 81.7876},
     # {"name": "Cricket Stadium", "lat": 21.1643, "lon": 81.7836},
-    {"name": "Telibandha Chowk", "lat": 21.238691, "lon": 81.671619},
+    # {"name": "Telibandha Chowk", "lat": 21.238691, "lon": 81.671619},
+    # {"name": "Budha Talab", "lat": 21.233882, "lon": 81.633333},
+    {"name": "Ghadi Chowk", "lat": 21.245407, "lon": 81.641741},
 ]
 
 def generate_expo_location(loc):
@@ -58,8 +60,9 @@ def main():
 
     print(f"Found {len(image_files)} images. Starting upload simulation...")
 
-    # Start date: April 10, 2026
-    current_simulated_date = datetime(2026, 4, 10, 10, 0, 0) 
+    # Start date: April 14, 2026 with current time
+    now = datetime.now()
+    current_simulated_date = datetime(2026, 4, 14, now.hour, now.minute, now.second) 
     uploaded_records = []
 
     # ==========================================
@@ -72,8 +75,7 @@ def main():
         loc = random.choice(LOCATIONS)
         expo_location_data = generate_expo_location(loc)
         
-        # Add random hours (1 to 6) and minutes to simulate movement during the day
-        current_simulated_date += timedelta(hours=random.randint(1, 6), minutes=random.randint(0, 59))
+        # Keep current time (no random hours added)
 
         try:
             with open(filepath, 'rb') as f:
@@ -105,7 +107,6 @@ def main():
 
         # Move to the next day for the next photo to build a multi-day history
         current_simulated_date += timedelta(days=1)
-        current_simulated_date = current_simulated_date.replace(hour=random.randint(9, 11)) # Reset to morning
 
     # ==========================================
     # PHASE 2: WAIT FOR PROCESSING & TIME TRAVEL

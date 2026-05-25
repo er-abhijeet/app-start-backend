@@ -1,7 +1,7 @@
 import socket
 
 def get_local_ip():
-    return ""
+    # return ""
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         # Doesn't actually connect, just helps find the correct interface
@@ -12,4 +12,4 @@ def get_local_ip():
     return ip
 
 image_url = f"http://{get_local_ip()}:5000/uploads"
-print(image_url)
+# print(image_url)

@@ -24,8 +24,9 @@ from insightface.app import FaceAnalysis
 import google.generativeai as genai
 from sentence_transformers import SentenceTransformer
 
-
+# useless
 final_ip="https://gallery.snorlax.codes"
+my_ipp=get_local_ip()
 # final_ip="http://{my_ip}:5069"
 
 
@@ -1028,7 +1029,7 @@ def search_photos():
         for photo in all_photos:
             loc = photo.get('location_data', {})
             loc1 = loc.get('coords', {})
-            print(photo)
+            # print(photo)
             # Handle different common coordinate key names
             p_lat = loc1.get('latitude') or loc.get('lat')
             p_lon = loc1.get('longitude') or loc.get('lon')
@@ -1426,17 +1427,22 @@ def geofence_checker():
     while processing_active:
         try:
             geofences = list(geofences_col.find({}))
+            # print("geofences are", geofences)
             if not geofences:
+                # print("none: ", geofences)
                 time.sleep(15)
                 continue
 
             cutoff = datetime.datetime.now() - datetime.timedelta(minutes=5)
             recent_photos = list(photos_col.find({
                 "status": "done",
-                "processed_at": {"$gte": cutoff}
+                # "processed_at": {"$gte": cutoff}
             }))
+            # print("here")
 
             for photo in recent_photos:
+                # print("[GEOFENCE] Geofence checker is checking a photo")
+
                 loc = photo.get('location_data', {})
                 coords = loc.get('coords', {})
                 p_lat = coords.get('latitude') or coords.get('lat') or loc.get('lat')
